@@ -2,6 +2,8 @@
 #define SPG30_SENSOR_H
 #include <stdint.h>
 
+#include <wiringPi.h>
+#include <wiringPiI2C.h>
 
 /**********************************************************************************************************************/
 #define I2C_WR 0 /* 写控制bit */
@@ -25,11 +27,14 @@
 #define I2C_SDA_READ()                 digitalRead(SDA)
 #define  I2C_WR                        0
 #define  I2C_RD                        1
-/*********************************************************************************************************************/
 
-#include <wiringPi.h>
-#include <wiringPiI2C.h>
-
+/**************************结构体********************************/
+    
+    typedef struct spg30_sensor_data
+    {
+        uint32_t CO2;
+        uint32_t TVOC;
+    }spg30_sensor_data;
 
 /*************************函数声明******************************/
     void SGP30_DATA_OUT_Cfg(void);
@@ -39,10 +44,14 @@
     void SGP30_I2C_NAck(void);
     void SGP30_I2C_Ack(void);
     void SGP30_I2C_SendByte(u_int8_t data);
+    void SGP30_Init(void);
+    void SGP30_DATA_CALC(spg30_sensor_data *data);
     uint8_t SGP30_i2C_ReadByte(uint8_t ack);
     uint8_t SGP30_I2C_WaitAck(void);
     uint8_t SGP30_I2C_CheckDevice(uint8_t _Address);
     uint32_t SGP30_I2C_Read_CO2_TVOC(uint8_t _Address);
+
+
 
 
 #endif

@@ -1,0 +1,9 @@
+<launch>
+    <!-- Add your launch file content here -->
+    <node name="spg30_sensor_node" pkg="spg30_sensor" type="spg30_sensor_node" />
+    <node name="web_vedio_server"  pkg="web_video_server" type="web_video_server" />
+    <include file = "$(find clbrobot)/launch/bringup.launch" />
+    <include file = "/home/orangepi/catkin_ws/src/depth_camera/ros_astra_camera/launch/astra.launch" />
+    <!-- 包含websocket的启动文件 -->
+    <include file = "$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+</launch>

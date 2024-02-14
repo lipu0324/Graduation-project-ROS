@@ -5,7 +5,6 @@
     <param name="baud" value="115200" />
   </node>
 
-  <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
 
    <!-- IMU Relay and Filter -->
      <!-- IMU relay from clbrobot_msgs/Imu to sensor_msgs/Imu -->

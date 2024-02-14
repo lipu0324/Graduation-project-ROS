@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/depth_camera/depthimage_to_laserscan" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/depth_camera/ros_astra_camera" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/depth_camera/ros_astra_launch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/opencv_apps" vcs="Git" />
+  </component>
+</project>
