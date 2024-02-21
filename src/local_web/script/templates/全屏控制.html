@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fullscreen Image</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .fullscreen-image {
+            background-image: url('http://ros:8080/stream?topic=/camera/rgb/image_rect_color');
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="fullscreen-image"></div>
+</body>
+</html>
