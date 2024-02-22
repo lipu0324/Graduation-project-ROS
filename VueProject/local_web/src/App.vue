@@ -4,18 +4,16 @@
     <!-- 头部 -->
     <myHeader></myHeader>
     <el-container style="height: 100vh;
-      border:1px soild #eee;
+      border:0px soild #eee;
       margin: 0;
       padding: 0;
       border:0;">
       <!-- 侧边栏 -->
-      <el-aside width="20%">
+      <el-aside width="15%">
         <asideNav></asideNav>
       </el-aside>
       <!-- 主体内容 -->
-      <el-main>
         <router-view></router-view>
-      </el-main>
     </el-container>
   </div>
 </template>

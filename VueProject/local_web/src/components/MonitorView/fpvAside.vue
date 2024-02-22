@@ -1,23 +1,28 @@
 <template>
-  <div>
-    <!-- Your component content goes here -->
-  </div>
+    <el-menu default-active="1" class="fpv-aside">
+      <el-menu-item index="1">
+        <RouterLink to = "/monitor/color" class="custom-link">RGB监视</RouterLink>
+      </el-menu-item>
+      <el-menu-item index="2">Option 2</el-menu-item>
+      <el-menu-item index="3">Option 3</el-menu-item>
+    </el-menu>
 </template>
 
 <script>
+import { ElAside, ElMenu, ElMenuItem } from 'element-plus'
 export default {
-  name: 'FpvAside',
-  // Your component options go here
+  name: 'fpvAside',
+  // Add your component logic here
 }
-
 </script>
 
 <style scoped>
-.el-aside {
-    height: 100%;
-    background-color: #545c64;
-}
+.fpv-aside {
+  width: 100%x;
+  height: 100%;
+  background-color: #545c64;
 
+}
 .custom-link {
     text-decoration: none;
     /* 去掉下划线 */

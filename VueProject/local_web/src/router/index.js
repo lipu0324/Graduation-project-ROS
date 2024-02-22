@@ -9,11 +9,18 @@ const routes = [
   },
   {
     path: '/monitor',
-    name: 'Monitor',
+    name: 'MonitorView',
     component: () => import('@/views/MonitorView.vue'),
     children: [
       {
-
+        path: 'deep',
+        name: 'FpvDeep',
+        component:() => import('@/components/MonitorView/fpvDeep.vue')
+      },
+      {
+        path: 'color',
+        name: 'FpvColor',
+        component: () => import('@/components/MonitorView/fpvColor.vue')
       }
     ]
   },
@@ -30,4 +37,3 @@ const router = createRouter({
 })
 
 export default router 
- 

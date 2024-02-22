@@ -21,11 +21,10 @@
                     系统设置
                 </el-menu-item>
             </RouterLink>
- 
         </el-menu>
     </el-aside>
 </template>
-  
+
 <script>
 
 export default {
