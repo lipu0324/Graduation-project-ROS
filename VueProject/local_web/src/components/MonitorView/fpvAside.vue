@@ -1,10 +1,15 @@
 <template>
     <el-menu default-active="1" class="fpv-aside">
+      <RouterLink to = "/monitor/color" class="custom-link">
       <el-menu-item index="1">
-        <RouterLink to = "/monitor/color" class="custom-link">RGB监视</RouterLink>
+        RGB监视
       </el-menu-item>
-      <el-menu-item index="2">Option 2</el-menu-item>
-      <el-menu-item index="3">Option 3</el-menu-item>
+    </RouterLink>
+    <router-link to = "/monitor/deep" class="custom-link">
+      <el-menu-item index="2">
+        深度监视
+      </el-menu-item>
+    </router-link>
     </el-menu>
 </template>
 

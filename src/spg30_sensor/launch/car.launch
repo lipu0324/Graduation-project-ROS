@@ -6,4 +6,5 @@
     <include file = "/home/orangepi/catkin_ws/src/depth_camera/ros_astra_camera/launch/astra.launch" />
     <!-- 包含websocket的启动文件 -->
     <include file = "$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+    <include file = "$(find opencv_apps)/launch/smoothing.launch" />
 </launch>
