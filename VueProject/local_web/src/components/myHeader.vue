@@ -1,7 +1,5 @@
 <template>
-  <div id="header">
-    <h1>智能车本地管理页面</h1>
-  </div>
+    <h1 id="header">智能车本地管理页面</h1>
 </template>
 
 <script>

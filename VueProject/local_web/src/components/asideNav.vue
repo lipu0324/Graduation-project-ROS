@@ -9,12 +9,29 @@
                     主页
                 </el-menu-item>
             </RouterLink>
-            <RouterLink to="/monitor" class="custom-link">
+            <!-- <RouterLink to="/monitor" class="custom-link">
                 <el-menu-item index="2">
                     <i class="el-icon-monitor"></i>
                     监视器
                 </el-menu-item>
-            </RouterLink>
+            </RouterLink> -->
+                <el-submenu index="2" class="custom-link">
+                    <template #title>
+                        <i class="el-icon-monitor"></i>
+                        监视器
+                    </template>
+                    <RouterLink to="/monitor/color" class="custom-link">
+                        <el-menu-item index="2-1">
+                            <i class="el-icon-monitor"></i>
+                            彩色图象</el-menu-item>
+                    </RouterLink>
+                    <RouterLink to="/monitor/deep" class="custom-link">
+                        <el-menu-item index="2-2">
+                            <i class="el-icon-monitor"></i>
+                            深度图象</el-menu-item>
+                    </RouterLink>
+                </el-submenu>
+
             <RouterLink to="/settings" class="custom-link">
                 <el-menu-item index="3">
                     <i class="el-icon-setting"></i>

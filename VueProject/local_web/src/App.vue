@@ -9,7 +9,7 @@
       padding: 0;
       border:0;">
       <!-- 侧边栏 -->
-      <el-aside width="10%">
+      <el-aside width="15%">
         <asideNav></asideNav>
       </el-aside>
       <!-- 主体内容 -->

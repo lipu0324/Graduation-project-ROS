@@ -3,9 +3,6 @@
   <el-container style="height: 100%;
   border: 1px solid #eee;
   margin-left: 0;">
-    <el-aside width="10%">
-      <fpvAside></fpvAside>
-    </el-aside>
     <!-- 路由模块 -->
     <el-main>
       <router-view></router-view>
@@ -78,6 +75,7 @@ export default {
       if (Event.key == 'd') {
         boolArray[5] = false;
       }
+      console.log(boolArray);
     })
     var cmdvel = new ROSLIB.Topic({
         ros: ros,
