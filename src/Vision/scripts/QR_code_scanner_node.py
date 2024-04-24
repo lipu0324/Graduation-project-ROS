@@ -15,7 +15,8 @@ import schedule,time,json,requests
 ######################################全局变量######################################
 # 转化过的图像
 cv_image = None
-
+bridge = CvBridge()
+pub = rospy.Publisher('QRcodeResult', str, queue_size=1)
 
 
 
@@ -51,9 +52,7 @@ def QrScanner(msg):
 
 def QRScanner_node():
     rospy.init_node('QR_code_scanner_node')
-    bridge = CvBridge()
     rate = rospy.Rate(10)
-    pub = rospy.Publisher('QRcodeResult', str, queue_size=1)
     image_sub = rospy.Subscriber('/camera/rgb/image_raw', Image, QrScanner)
     while not rospy.is_shutdown():
         rate.sleep()
