@@ -3,7 +3,7 @@
 #include "spg30_sensor.h"
 #include <std_msgs/String.h>
 #include <unistd.h>
-
+#include "jsoncpp/json/json.h"
 int main(int argc, char *argv[])
 {
     ros::init(argc, argv, "spg30_sensor_node");
@@ -23,17 +23,23 @@ int main(int argc, char *argv[])
     SGP30_Init();
     //初始化消息发布器 
     ros::NodeHandle nh;
-    ros::Publisher spg30_sensor_pub = nh.advertise<std_msgs::String>("spg30_sensor", 1000);
+    ros::Publisher spg30_sensor_pub = nh.advertise<std_msgs::String>("spg30_sensor", 2);
     ros::Rate loop_rate(1);
     spg30_sensor_data data;
     while (ros::ok())
     {
         uint32_t CO2_TVOC = SGP30_I2C_Read_CO2_TVOC(0x58);
         SGP30_DATA_CALC(&data);
+        Json::Value json_data;
+        json_data["CO2"] = data.CO2;
+        json_data["TVOC"] = data.TVOC;
+        Json::StreamWriterBuilder builder;
+        builder["indentation"] = "";
+        std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
+        std::ostringstream oss;
+        writer->write(json_data, &oss);
         std_msgs::String msg;
-        std::stringstream ss;
-        ss << "CO2: " << data.CO2 << " ppm" << " TVOC: " << data.TVOC << " ppb";
-        msg.data = ss.str();
+        msg.data = oss.str();
         ROS_INFO("%s", msg.data.c_str());
         spg30_sensor_pub.publish(msg);
         loop_rate.sleep();
@@ -104,7 +110,7 @@ void SGP30_I2C_Ack(void) // 非应答信号
     I2C_SDA_1();
 }
 
-void SGP30_i2C_SendByte(u_int8_t data) // 发送一个字节
+void SGP30_I2C_SendByte(u_int8_t data) // 发送一个字节
 {
     u_int8_t i;
     SGP30_DATA_OUT_Cfg();
@@ -195,7 +201,7 @@ uint8_t SGP30_I2C_CheckDevice(uint8_t _Address) // 检测设备是否存在
 {
     uint8_t ucAck;
     SGP30_I2C_Start();
-    SGP30_i2C_SendByte(_Address | I2C_WR);
+    I(_Address | I2C_WR);
     ucAck = SGP30_I2C_WaitAck();
     SGP30_I2C_Stop();
     return ucAck;
@@ -206,16 +212,16 @@ uint32_t SGP30_I2C_Read_CO2_TVOC(uint8_t _Address)
     uint32_t Read_CO2_TVOC=0;
     uint8_t CRC_Check;
     SGP30_I2C_Start(); // 启动I2C总线
-    SGP30_i2C_SendByte(_Address<<1 | I2C_WR); // 发送写命令
+    I(_Address<<1 | I2C_WR); // 发送写命令
     SGP30_I2C_WaitAck(); // 等待应答
-    SGP30_i2C_SendByte(0x20); // 发送读地址
+    I(0x20); // 发送读地址
     SGP30_I2C_WaitAck(); // 等待应答
-    SGP30_i2C_SendByte(0x08); // 发送读地址
+    I(0x08); // 发送读地址 
     SGP30_I2C_WaitAck(); // 等待应答
     SGP30_I2C_Stop(); // 发送停止信号
     sleep(1);
     SGP30_I2C_Start(); // 启动I2C总线
-    SGP30_i2C_SendByte(_Address<<1 | I2C_RD); // 读取设备的特征集
+    I(_Address<<1 | I2C_RD); // 读取设备的特征集
     SGP30_I2C_WaitAck(); // 等待应答
     Read_CO2_TVOC |= (uint16_t)(SGP30_I2C_ReadByte(1)<<8);
     Read_CO2_TVOC |= (uint16_t)(SGP30_I2C_ReadByte(1));
@@ -233,11 +239,11 @@ uint32_t SGP30_I2C_Read_CO2_TVOC(uint8_t _Address)
 void SGP30_Init(void)
 {
     SGP30_I2C_Start(); // 启动I2C总线
-    SGP30_i2C_SendByte(0x58<<1 | I2C_WR); // 发送写命令
+    I(0x58<<1 | I2C_WR); // 发送写命令
     SGP30_I2C_WaitAck(); // 等待应答
-    SGP30_i2C_SendByte(0x20); // 发送读地址
+    I(0x20); // 发送读地址
     SGP30_I2C_WaitAck(); // 等待应答
-    SGP30_i2C_SendByte(0x03); // 发送读地址
+    I(0x03); // 发送读地址
     SGP30_I2C_WaitAck(); // 等待应答
     SGP30_I2C_Stop(); // 停止I2C总线
     sleep(1);

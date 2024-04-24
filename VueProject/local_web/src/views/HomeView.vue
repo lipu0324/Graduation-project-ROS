@@ -1,11 +1,15 @@
 <template>
+
+  
 </template>
 
-<script>
-export default {
-  name: 'HomeView',
-  // Your component options here
-}
+<script setup>
+import { onMounted } from 'vue';
+import element from '@/plugins/element';
+import fpvAside from '@/components/MonitorView/fpvAside.vue';
+// 引入roslib
+import ROSLIB from 'roslib';
+
 </script>
 
 <style scoped>
