@@ -15,7 +15,7 @@ import { onMounted } from 'vue';
 import element from '@/plugins/element';
 import fpvAside from '@/components/MonitorView/fpvAside.vue';
 // 引入roslib
-import ROSLIB from 'roslib';
+import ROSLIB from '@/../../node_modules/roslib/build/roslib';
 export default {
   name: 'MonitorView',
   components: {

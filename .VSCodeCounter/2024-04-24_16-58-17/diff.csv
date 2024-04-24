@@ -1,0 +1,11 @@
+"filename", "language", "vue", "comment", "blank", "total"
+"/home/orangepi/catkin_ws/VueProject/local_web/src/App.vue", "vue", -40, 0, -4, -44
+"/home/orangepi/catkin_ws/VueProject/local_web/src/components/HomeView/CarData.vue", "vue", -6, 0, -9, -15
+"/home/orangepi/catkin_ws/VueProject/local_web/src/components/MonitorView/fpvAside.vue", "vue", -46, 0, -4, -50
+"/home/orangepi/catkin_ws/VueProject/local_web/src/components/MonitorView/fpvColor.vue", "vue", -17, 0, -3, -20
+"/home/orangepi/catkin_ws/VueProject/local_web/src/components/MonitorView/fpvDeep.vue", "vue", -18, 0, -4, -22
+"/home/orangepi/catkin_ws/VueProject/local_web/src/components/MonitorView/fpvSmooth.vue", "vue", -18, 0, -4, -22
+"/home/orangepi/catkin_ws/VueProject/local_web/src/components/asideNav.vue", "vue", -79, 0, -5, -84
+"/home/orangepi/catkin_ws/VueProject/local_web/src/components/myHeader.vue", "vue", -18, 0, -4, -22
+"/home/orangepi/catkin_ws/VueProject/local_web/src/views/HomeView.vue", "vue", 13, 0, 0, 13
+"Total", "-", -229, 0, -37, -266

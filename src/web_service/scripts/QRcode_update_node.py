@@ -21,11 +21,12 @@ def callback(data):
     msg_data = json.loads(data.data)
     msg_data["car_id"] = car_id
     msg_data["car_ip"] = car_ip
-    msg_data["location"] = "手动上传"
 
 ###########################定时数据上传函数########################
 
 def data_update(data):
+    global msg_data
+    msg_data['location'] = data.data
     url = server_url + '/dataupdate/'
     # data_dict = json.loads(data)
     # json_data = json.dumps(data_dict)
@@ -37,8 +38,11 @@ def data_update(data):
 
 def timer_update_node():
     init_node('manual_update_node')
+    rate = Rate(10)
     Subscriber('spg30_sensor',string,callback)
-    Subscriber('updateControl',bool,data_update)
+    Subscriber('location',string,data_update)
+    while not is_shutdown():
+        rate.sleep()
 
 if __name__ == '__main__':
     timer_update_node()
