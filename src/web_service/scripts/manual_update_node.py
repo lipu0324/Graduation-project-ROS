@@ -1,11 +1,15 @@
-import string
+from std_msgs.msg import String,Bool
 from rospy import *
 import time,json,requests
 #############################变量区域#############################
-msg_data = {}  # 全局json变量
+msg_data = {    "car_id": "1",
+    "car_ip": "ROS",
+    "CO2": "0",
+    "TVOC": "0",
+    "location": "手动上传"}  # 全局json变量
 ############################加载配置文件##########################
 
-settings_file_path = '../../settings.json'
+settings_file_path = '/home/orangepi/catkin_ws/src/settings.json'
 with open(settings_file_path) as f:
     settings = json.load(f)
     server_url = settings['Server_URL']
@@ -29,6 +33,7 @@ def data_update(data):
     # data_dict = json.loads(data)
     # json_data = json.dumps(data_dict)
     response = requests.post(url, json=msg_data,headers={'Content-Type': 'application/json'})
+    print('data_update')
     print (response.status_code)
     print (response.text)
 
@@ -40,8 +45,9 @@ def data_update(data):
 
 def manual_update_node():
     init_node('manual_update_node')
-    Subscriber('spg30_sensor',string,callback)
-    Subscriber('updateControl',bool,data_update)
+    Subscriber('/spg30_sensor',String,callback)
+    Subscriber('/updateControl',Bool,data_update)
+    print('manual_update_node is running')
     while not is_shutdown():
         spin()
 

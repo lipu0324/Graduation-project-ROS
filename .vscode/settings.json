@@ -17,8 +17,11 @@
     ],
     "C_Cpp.errorSquiggles": "disabled",
     "cSpell.words": [
+        "datajson",
+        "hostip",
         "roslib",
         "rospy",
-        "timerdataupdate"
+        "timerdataupdate",
+        "TVOC"
     ]
 }

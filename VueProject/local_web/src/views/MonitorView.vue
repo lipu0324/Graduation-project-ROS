@@ -15,14 +15,14 @@ import { onMounted } from 'vue';
 import element from '@/plugins/element';
 import fpvAside from '@/components/MonitorView/fpvAside.vue';
 // 引入roslib
-import ROSLIB from '@/../../node_modules/roslib/build/roslib';
+import ROSLIB from 'roslib';
 export default {
   name: 'MonitorView',
   components: {
     fpvAside
   },
   setup() {
-    let hostname = window.location.hostname;
+    let hostname = "ros";
       // 创建ros对象
       let ros = new ROSLIB.Ros({
         url: 'ws://' + hostname + ':9090'

@@ -1,6 +1,6 @@
 {
-    "Server_URL": "http://localhost:8000/carInterface/api",
-    "interval_minutes": "5",
+    "Server_URL": "http://100.89.173.43:8000/carinterface/api",
+    "interval_minutes": "0.1",
     "car_id": "1",
     "car_ip":"100.103.56.51"
-}
+}   

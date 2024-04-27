@@ -1,12 +1,18 @@
-import string
+from std_msgs.msg import String
 from rospy import *
 import schedule,time,json,requests
 #############################变量区域#############################
-msg_data = {}  # 全局json变量
-rate = Rate(1)
+msg_data = {
+    "car_id": "1",
+    "car_ip": "ROS",
+    "CO2": "0",
+    "TVOC": "0",
+    "location": "定时上传"
+}  # 全局json变量
+
 ############################加载配置文件##########################
 
-settings_file_path = '../../settings.json'
+settings_file_path = '/home/orangepi/catkin_ws/src/settings.json'
 with open(settings_file_path) as f:
     settings = json.load(f)
     server_url = settings['Server_URL']
@@ -18,6 +24,7 @@ with open(settings_file_path) as f:
 
 def callback(data):
     # 将data解析成json格式
+    print("接收到数据")
     global msg_data
     msg_data = json.loads(data.data)
     msg_data["car_id"] = car_id
@@ -27,24 +34,28 @@ def callback(data):
 ###########################定时数据上传函数########################
 
 def data_update():
+    print ("定时上传数据")
     url = server_url + '/dataupdate/'
+    print(url)
     # data_dict = json.loads(data)
     # json_data = json.dumps(data_dict)
-    response = requests.post(url, json=msg_data,headers={'Content-Type': 'application/json'})
+    print(msg_data)
+    response = requests.post(url, json=msg_data,timeout=5)
     print (response.status_code)
     print (response.text)
 
 
 
 
-schedule.every(interval_minutes).minutes.do(data_update)
+schedule.every(float(interval_minutes)).minutes.do(data_update)
 
 
 
 
 def timer_update_node():
     init_node('timer_update_node')
-    Subscriber('spg30_sensor',string,callback)
+    rate = Rate(1)
+    Subscriber('spg30_sensor',String,callback)
     while not is_shutdown():
         schedule.run_pending()
         rate.sleep()

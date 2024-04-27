@@ -1,11 +1,12 @@
-import string
+import string,os
 from rospy import *
 import time,json,requests
+from std_msgs.msg import String
 #############################变量区域#############################
 msg_data = {}  # 全局json变量
 ############################加载配置文件##########################
-
-settings_file_path = '../../settings.json'
+print(os.getcwd())
+settings_file_path = '/home/orangepi/catkin_ws/src/settings.json'
 with open(settings_file_path) as f:
     settings = json.load(f)
     server_url = settings['Server_URL']
@@ -39,8 +40,8 @@ def data_update(data):
 def timer_update_node():
     init_node('manual_update_node')
     rate = Rate(10)
-    Subscriber('spg30_sensor',string,callback)
-    Subscriber('location',string,data_update)
+    Subscriber('spg30_sensor',String,callback)
+    Subscriber('location',String,data_update)
     while not is_shutdown():
         rate.sleep()
 

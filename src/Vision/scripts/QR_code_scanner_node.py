@@ -11,12 +11,13 @@ from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import PoseStamped
 import schedule,time,json,requests
+from std_msgs.msg import String
 
 ######################################全局变量######################################
 # 转化过的图像
 cv_image = None
 bridge = CvBridge()
-pub = rospy.Publisher('QRcodeResult', str, queue_size=1)
+pub = rospy.Publisher('QRcodeResult', String, queue_size=1)
 
 
 
@@ -56,6 +57,7 @@ def QRScanner_node():
     image_sub = rospy.Subscriber('/camera/rgb/image_raw', Image, QrScanner)
     while not rospy.is_shutdown():
         rate.sleep()
+        print("QR Scanner node is running")
 
 
 if __name__ == '__main__':
