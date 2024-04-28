@@ -156,6 +156,7 @@ add_executable(${PROJECT_NAME}_node src/spg30_sensor_node.cpp)
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
   -lwiringPi
+  -ljsoncpp
 )
 
 #############

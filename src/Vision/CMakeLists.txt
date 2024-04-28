@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(Vision)
-
+set(openCV_DIRS "/usr/lib/aarch64-linux-gnu/cmake/opencv4")
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 
@@ -10,10 +10,11 @@ project(Vision)
 find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   image_transport
-  opencv
+  # opencv
   roscpp
   rospy
 )
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -120,6 +121,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
